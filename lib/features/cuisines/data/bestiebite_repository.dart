@@ -26,9 +26,11 @@ class BestiebiteRepository {
         'limit': '$limit',
       },
     );
+    
     final response = await _client.get(uri);
     _ensureSuccess(response);
     final list = jsonDecode(response.body) as List<dynamic>;
+
     return list
         .cast<Map<String, dynamic>>()
         .map(CitySuggestion.fromJson)
@@ -43,10 +45,12 @@ class BestiebiteRepository {
         'type': 'cuisine',
       },
     );
+
     final response = await _client.get(uri);
     _ensureSuccess(response);
     final body = jsonDecode(response.body) as Map<String, dynamic>;
     final data = body['data'] as List<dynamic>? ?? const [];
+
     return data
         .cast<Map<String, dynamic>>()
         .map(Cuisine.fromJson)

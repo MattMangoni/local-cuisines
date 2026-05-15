@@ -18,8 +18,9 @@ class CitySuggestion {
   final String secondaryText;
 
   factory CitySuggestion.fromJson(Map<String, dynamic> json) {
-    final formatting = json['structured_formatting'] as Map<String, dynamic>?;
     final name = json['name'] as String;
+    final formatting = json['structured_formatting'] as Map<String, dynamic>?;
+    
     return CitySuggestion(
       id: json['id'] as int,
       name: name,
