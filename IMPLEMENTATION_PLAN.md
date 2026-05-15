@@ -215,7 +215,7 @@ Per chiarezza, fuori scope come da brief:
 
 ## 9. Decisioni finali (risposte ai punti aperti)
 
-1. **Asset Italia:** PNG monocromatica grigia, recuperata da Wikimedia Commons (public domain) e processata se serve.
+1. **Asset Italia:** PNG monocromatica grigia, da recuperare o sostituire con un placeholder.
 2. **Piattaforme:** iOS = target principale (verifica su simulatore obbligatoria); Android = bonus best-effort, niente garanzie su test approfonditi.
 3. **Back:** reset completo a `SearchIdle` (campo svuotato).
 4. **Label cucine:** `maxLines: 2` + `TextOverflow.ellipsis`. Parole singole troncano, nomi composti vanno a capo naturalmente sullo spazio.
