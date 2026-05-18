@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme.dart';
+import 'features/cuisines/presentation/home_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: CucineInCittaApp()));
@@ -16,13 +17,7 @@ class CucineInCittaApp extends StatelessWidget {
       title: 'Cucine in città',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(),
-      home: const Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Text('Cucine in città'),
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }

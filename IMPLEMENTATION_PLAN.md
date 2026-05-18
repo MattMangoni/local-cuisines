@@ -155,11 +155,11 @@ class BestiebiteRepository {
 - **Header città:** nome città (es. "Milano") large bold, underline arancione corto (~larghezza del testo) subito sotto il nome. Sottotitolo `secondary_text` (es. "Lombardia, Italia") muted sotto.
 - **Counter:** label `"{length} cucine disponibili"` muted, sopra la griglia (usa `length` dalla risposta API).
 - **Grid:** `GridView.builder` **3 colonne**, `childAspectRatio` ~0.85 (card leggermente più alta che larga), gap ~12 px. Card = surface scura arrotondata, immagine quadrata (cached network) centrata in alto, nome cucina bold in basso.
-- **Label nome cucina:** `Text` con `maxLines: 2` e `overflow: TextOverflow.ellipsis`. Comportamento di fatto:
-  - parola singola lunga (es. "Giapponese") → 1 riga troncata con ellipsis ("Giappon...");
-  - nome composto (es. "Senza glutine") → wrap naturale su 2 righe grazie agli spazi.
-  
-  Niente logica custom di split: Flutter sceglie già il wrap solo sugli whitespace, quindi `maxLines: 2 + ellipsis` copre entrambi i casi del mockup in modo dichiarativo.
+- **Label nome cucina:** `Text` con `maxLines` **condizionale** sulla presenza di spazi nel nome, + `overflow: TextOverflow.ellipsis`:
+  - parola singola (es. "Venezuelana", "Giapponese") → `maxLines: 1` → ellipsis "…" se non sta;
+  - nome composto (es. "Senza glutine") → `maxLines: 2` → wrap naturale sullo spazio.
+
+  **Perché non `maxLines: 2` sempre:** Flutter wrappa mid-word quando una singola parola non entra in una riga (es. "Venezuelan" / "a"), comportamento sgradevole. La regola "presence-of-whitespace ↔ maxLines" è una riga (`cuisine.name.contains(' ') ? 2 : 1`) e copre i due casi attesi senza pacchetti per word-breaking né caratteri Unicode invisibili.
 - **Stati Loading/Empty/Error:** sotto l'header, area centrata con messaggio (retry per Error).
 
 ### Asset
