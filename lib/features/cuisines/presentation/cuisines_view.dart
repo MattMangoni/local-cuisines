@@ -20,6 +20,7 @@ class CuisinesView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final args = (lat: city.latitude, lng: city.longitude);
     final state = ref.watch(cuisinesControllerProvider(args));
+    final controller = ref.read(cuisinesControllerProvider(args).notifier);
 
     return Scaffold(
       body: SafeArea(
@@ -45,11 +46,7 @@ class CuisinesView extends ConsumerWidget {
                   CuisinesEmpty() => const EmptyView(
                       message: 'Nessuna cucina disponibile per questa città.',
                     ),
-                  CuisinesError() => ErrorView(
-                      onRetry: ref
-                          .read(cuisinesControllerProvider(args).notifier)
-                          .retry,
-                    ),
+                  CuisinesError() => ErrorView(onRetry: controller.retry),
                 },
               ),
             ],

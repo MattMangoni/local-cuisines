@@ -23,6 +23,5 @@ class SearchEmpty extends SearchState {
 }
 
 class SearchError extends SearchState {
-  const SearchError(this.error);
-  final Object error;
+  const SearchError();
 }

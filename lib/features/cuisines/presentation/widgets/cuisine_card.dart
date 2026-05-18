@@ -18,12 +18,11 @@ class CuisineCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: Center(
-              child: SizedBox(
-                width: 56,
-                height: 56,
-                child: const DecoratedBox(
+              child: SizedBox.square(
+                dimension: 56,
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: AppColors.illustration,
                     shape: BoxShape.circle,

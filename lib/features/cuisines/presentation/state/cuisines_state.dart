@@ -18,6 +18,5 @@ class CuisinesEmpty extends CuisinesState {
 }
 
 class CuisinesError extends CuisinesState {
-  const CuisinesError(this.error);
-  final Object error;
+  const CuisinesError();
 }

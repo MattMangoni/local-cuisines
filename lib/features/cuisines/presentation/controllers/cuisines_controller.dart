@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/bestiebite_repository.dart';
@@ -26,8 +27,9 @@ class CuisinesController extends Notifier<CuisinesState> {
       final repo = ref.read(bestiebiteRepositoryProvider);
       final items = await repo.cuisinesByLocation(args.lat, args.lng);
       state = items.isEmpty ? const CuisinesEmpty() : CuisinesLoaded(items);
-    } catch (error) {
-      state = CuisinesError(error);
+    } catch (error, stack) {
+      debugPrint('CuisinesController load(${args.lat}, ${args.lng}) failed: $error\n$stack');
+      state = const CuisinesError();
     }
   }
 }

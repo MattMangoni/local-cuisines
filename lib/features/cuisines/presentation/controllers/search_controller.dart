@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/bestiebite_repository.dart';
@@ -45,9 +46,10 @@ class SearchController extends Notifier<SearchState> {
       final items = await repo.autocomplete(term);
       if (id != _requestId) return;
       state = items.isEmpty ? SearchEmpty(term) : SearchSuggestions(items);
-    } catch (error) {
+    } catch (error, stack) {
+      debugPrint('SearchController autocomplete("$term") failed: $error\n$stack');
       if (id != _requestId) return;
-      state = SearchError(error);
+      state = const SearchError();
     }
   }
 }

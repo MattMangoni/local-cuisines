@@ -54,8 +54,8 @@ class _SearchViewState extends ConsumerState<SearchView> {
                   SearchLoading() => const LoadingView(),
                   SearchSuggestions(:final items) =>
                     SuggestionsList(items: items),
-                  SearchEmpty() => const EmptyView(
-                      message: 'Nessuna città trovata',
+                  SearchEmpty(:final term) => EmptyView(
+                      message: "Nessuna città trovata per '$term'",
                     ),
                   SearchError() => ErrorView(onRetry: controller.retry),
                 },
